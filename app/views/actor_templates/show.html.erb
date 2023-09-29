@@ -1,17 +1,20 @@
 <h1>
   Actor #<%= @the_actor.id %> details
 </h1>
+<div>
+  <a href="/actors">
+    Go back
+  </a>
+</div>
 
-<a href="/actors">
-  Go back
-</a>
+
 <div>
   <a href="/delete_actor/<%= @the_actor.id %>">Delete actor</a>
 </div>
 
 <hr>
 
-  <form action="/modify_actor_record/<%= @the_actor.id %>" method="post">
+  <form action="/modify_actor/<%= @the_actor.id %>" method="post">
     <div>
       <label for="name_box">
         Name
@@ -130,9 +133,9 @@
   <% matching_characters = Character.where({ :actor_id => a_id }) %>
 
   <% matching_characters.each do |a_character| %>
-    <% m_id = a_character.movie_id %>
+    <% an_id = a_character.movie_id %>
 
-    <% matching_movies = Movie.where({ :id => m_id }) %>
+    <% matching_movies = Movie.where({ :id => an_id }) %>
 
     <% the_movie = matching_movies.at(0) %>
 

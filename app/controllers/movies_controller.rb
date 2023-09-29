@@ -21,7 +21,19 @@ class MoviesController < ApplicationController
   end
   
   def destroy
-    m_id = params.fetch("the_id")
+    the_id = params.fetch("an_id")
+
+    matching_records = Movie.where({ :id => the_id })
+
+    @the_movie = matching_records.at(0)
+
+    @the_movie.destroy
+
+    redirect_to("/movies")
+  end
+
+  def update
+    m_id = params.fetch("an_id")
 
     matching_records = Movie.where({ :id => m_id })
 
@@ -36,19 +48,7 @@ class MoviesController < ApplicationController
     
     @the_movie.save
 
-    redirect_to("/movies/#{the_movie.id}")
-  end
-
-  def update
-    the_id = params.fetch("an_id")
-
-    matching_records = Movie.where({ :id => the_id })
-
-    @the_movie = matching_records.at(0)
-
-    @the_movie.update
-
-    redirect_to("/movies/#{the_movie.id}")
+    redirect_to("/movies/#{@the_movie.id}")
 
   end
   

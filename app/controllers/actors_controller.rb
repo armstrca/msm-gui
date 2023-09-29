@@ -7,54 +7,50 @@ class ActorsController < ApplicationController
   end
 
   def create
-    a = Movie.new
-    a.title = params.fetch("the_title")
-    a.year = params.fetch("the_year")
-    a.duration = params.fetch("the_duration")
-    a.description = params.fetch("the_description")
+    a = Actor.new
+    a.name = params.fetch("the_name")
+    a.dob = params.fetch("the_dob")
+    a.bio = params.fetch("the_bio")
     a.image = params.fetch("the_image")
-    a.director_id = params.fetch("the_director_id")
-    a
+    
     a.save
     
-    redirect_to("/movies")
+    redirect_to("/actors")
   end
   
   def destroy
-    a_id = params.fetch("the_id")
+    the_id = params.fetch("an_id")
 
-    matching_records = Movie.where({ :id => a_id })
+    matching_records = Actor.where({ :id => the_id })
 
     @the_actor = matching_records.at(0)
 
-    @the_actor.title = params.fetch("the_title")
-    @the_actor.year = params.fetch("the_year")
-    @the_actor.duration = params.fetch("the_duration")
-    @the_actor.description = params.fetch("the_description")
-    @the_actor.image = params.fetch("the_image")
-    @the_actor.director_id = params.fetch("the_director_id")
-    
-    @the_actor.save
+    @the_actor.destroy
 
-    redirect_to("/movies/#{@the_actor.id}")
+    redirect_to("/actors")
   end
 
   def update
     the_id = params.fetch("an_id")
 
-    matching_records = Movie.where({ :id => the_id })
+    matching_records = Actor.where({ :id => the_id })
 
     @the_actor = matching_records.at(0)
 
-    @the_actor.update
+    @the_actor.name = params.fetch("the_name")
+    @the_actor.dob = params.fetch("the_dob")
+    @the_actor.bio = params.fetch("the_bio")
+    @the_actor.image = params.fetch("the_image")
+    
+    @the_actor.save
 
-    redirect_to("/movies")
+    redirect_to("/actors/#{@the_actor.id}")
 
   end
 
 
   def show
-    the_id = params.fetch("path_id")
+    the_id = params.fetch("an_id")
 
     matching_actors = Actor.where({ :id => the_id })
     @the_actor = matching_actors.at(0)
