@@ -315,7 +315,8 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rexml (3.2.5)
+    rexml (3.3.6)
+      strscan
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -372,6 +373,7 @@ GEM
     sqlite3 (1.6.2-x86_64-linux)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    strscan (3.1.0)
     table_print (1.5.7)
     tabulo (2.8.2)
       tty-screen (= 0.8.1)
